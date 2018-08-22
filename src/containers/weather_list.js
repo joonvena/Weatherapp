@@ -7,13 +7,19 @@ import GoogleMap from '../components/google_map';
 class WeatherList extends Component {
 
     renderWeather(citydata) {
+        
+        if((citydata == null)) {
+            return (null)
+        }
         const city = citydata.city.name;
+        var weather = _;
+        console.log("HELLO" + weather);
         var temps = _.map(citydata.list.map (weather => weather.main.temp), (temp) => temp - 273);
         const press = citydata.list.map(weather => weather.main.pressure);
         const humid = citydata.list.map(weather => weather.main.humidity);
         const { lat, lon } = citydata.city.coord;
+        console.log(temps);
         
-
         return (
             <tr key={city}>
                 <td><GoogleMap lon={lon} lat={lat} /></td>
